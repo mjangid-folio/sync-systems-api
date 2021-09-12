@@ -2,13 +2,13 @@ const db = require("../models");
 const Policy = db.policy;
 const Op = db.Sequelize.Op;
 
-// function erratic_api() {
-//     if (Math.random() < 0.3) {
-//         throw new Error('Internal Error Server')
-//     }
-// }
-// erratic_api();
-// Create and Save a new Computer
+function erratic_api() {
+    if (Math.random() < 0.3) {
+        throw new Error('Internal Error Server')
+    }
+}
+erratic_api();
+// Create and Save a new Computer entry
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.id) {
@@ -18,7 +18,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Computer
+  // Create a Computer entry
   const policy = {
     id: req.body.id,
     computer_name: req.body.computer_name,
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     type: req.body.type
   };
 
-  // Save Computer in the database
+  // Save Computer entry in the database
   Policy.create(policy)
     .then(data => {
       res.send(data);
@@ -134,20 +134,6 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all policy."
-      });
-    });
-};
-
-// Find all published policy
-exports.findAllPublished = (req, res) => {
-    Policy.findAll({ where: { published: true } })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving policy."
       });
     });
 };
