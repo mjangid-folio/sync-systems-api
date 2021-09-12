@@ -9,9 +9,6 @@ module.exports = app => {
     // Retrieve all policys
     router.get("/", policies.findAll);
   
-    // Retrieve all published policys
-    router.get("/published", policies.findAllPublished);
-  
     // Retrieve a single policy with id
     router.get("/:id", policies.findOne);
   

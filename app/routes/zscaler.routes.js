@@ -9,9 +9,6 @@ module.exports = app => {
   // Retrieve all Computers
   router.get("/", computers.findAll);
 
-  // Retrieve all published Computers
-  router.get("/published", computers.findAllPublished);
-
   // Retrieve a single Computer with id
   router.get("/:id", computers.findOne);
 
